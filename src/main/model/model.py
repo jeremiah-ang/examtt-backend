@@ -6,4 +6,3 @@ class Model:
 
     def parse_and_add_entry(self, entry_str):
         self.examtt.parse_and_add_entry(entry_str)
-
