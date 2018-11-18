@@ -2,6 +2,7 @@ from ..model.examtt import Examtt
 from .parser.myacesParser import MyacesParser
 from .parser.examttParser import ExamttParser
 from .dataObject.examttSlotObject import ExamttSlotObject
+from .dataObject.examttStudentObject import ExamttStudentObject
 
 
 class Controller:
@@ -26,6 +27,12 @@ class Controller:
         examttBySlot.add_entries(
             self.examtt.get_by_slot(day, time, venue))
         return examttBySlot.examtts
+
+    def get_examtt_by_student(self, student_name):
+        examttByStudent = ExamttStudentObject()
+        examttByStudent.add_entries(
+            self.examtt.get_by_student(student_name))
+        return examttByStudent.examtts
 
     def page_not_found(self):
         return "Page Not Found!"

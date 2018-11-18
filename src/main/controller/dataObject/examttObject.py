@@ -14,13 +14,14 @@ class ExamttObject(DataObject):
     INDEX_SLOT = 3
     INDEX_VENUE = 4
 
-    examtts = {
-        KEY_EXAMS: [],
-        KEY_STUDENT: {},
-        KEY_MODULE: {},
-        KEY_SLOT: {},
-        KEY_VENUE: {}
-    }
+    def __init__(self):
+        self.examtts = {
+            self.KEY_EXAMS: [],
+            self.KEY_STUDENT: {},
+            self.KEY_MODULE: {},
+            self.KEY_SLOT: {},
+            self.KEY_VENUE: {}
+        }
 
     def add_entries(self, entries):
         for entry in entries:

@@ -38,6 +38,10 @@ def get_examtt_by_slot():
     venue = request.args.get('venue', default=None, type=str)
     return json.jsonify(controller.get_examtt_by_slot(day, time, venue))
 
+@app.route("/api/examtt/student/<student_name>", methods=['GET'])
+def get_examtt_by_student(student_name):
+    return json.jsonify(controller.get_examtt_by_student(student_name))
+
 
 @app.errorhandler(404)
 def page_not_found(err):
