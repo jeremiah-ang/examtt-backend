@@ -3,6 +3,7 @@ from .parser.myacesParser import MyacesParser
 from .parser.examttParser import ExamttParser
 from .dataObject.examttSlotObject import ExamttSlotObject
 from .dataObject.examttStudentObject import ExamttStudentObject
+from .dataObject.examttCsv import ExamttCsv
 
 
 class Controller:
@@ -34,6 +35,11 @@ class Controller:
         examttByStudent.add_entries(
             self.examtt.get_by_student(student_name))
         return examttByStudent.examtts
+
+    def get_examtt_as_csv(self):
+        examttCsv = ExamttCsv()
+        examttCsv.add_entries(self.examtt.get_by_slot(None, None, None))
+        return examttCsv.get_csv()
 
     def page_not_found(self):
         return "Page Not Found!"

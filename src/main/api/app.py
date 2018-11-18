@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, json
+from flask import Flask, request, json, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
@@ -53,9 +53,19 @@ def get_examtt_by_slot():
     venue = request.args.get('venue', default=None, type=str)
     return json.jsonify(controller.get_examtt_by_slot(day, time, venue))
 
+
 @app.route("/api/examtt/student/<student_name>", methods=['GET'])
 def get_examtt_by_student(student_name):
     return json.jsonify(controller.get_examtt_by_student(student_name))
+
+
+@app.route("/api/examtt/csv", methods=['GET'])
+def get_examtt_as_csv():
+    csv = controller.get_examtt_as_csv()
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition": "attachment; filename=examtt.csv"})
 
 
 @app.errorhandler(404)
