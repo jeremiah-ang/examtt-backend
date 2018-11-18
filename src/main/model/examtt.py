@@ -25,6 +25,7 @@ class Examtt:
             exam = Exams(student_name=student.name, module_code=module.code)
             self.storage.add_exams(exam)
         self.storage.commit()
+        return student.name
 
     def get_by_slot(self, day, time, venue):
         return self.get_slots(day, time, venue)

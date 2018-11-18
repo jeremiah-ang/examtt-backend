@@ -42,8 +42,7 @@ def home():
 @app.route("/api/examtt/parse/<parser_choice>", methods=['POST'])
 def parse_examtt(parser_choice):
     examtt_str = request.get_json()['examtt']
-    controller.parse_and_add_examtt_obj(examtt_str, parser_choice)
-    return "Hello"
+    return controller.parse_and_add_examtt_obj(examtt_str, parser_choice)
 
 
 @app.route("/api/examtt/slot", methods=['GET'])

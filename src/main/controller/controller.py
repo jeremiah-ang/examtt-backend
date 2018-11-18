@@ -20,7 +20,8 @@ class Controller:
         parser = ExamttParser()
         if parser_choice == self.PARSER_CHOICE_MYACES:
             parser = MyacesParser()
-        self.examtt.add(parser.parse(examtt_obj))
+        student_name = self.examtt.add(parser.parse(examtt_obj))
+        return self.get_examtt_by_student(student_name)
 
     def get_examtt_by_slot(self, day, time, venue):
         examttBySlot = ExamttSlotObject()
