@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, json
 from flask_sqlalchemy import SQLAlchemy
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,11 +31,12 @@ def parse_examtt(parser_choice):
     return "Hello"
 
 
-@app.route(
-    "/api/examtt/slot", methods=['GET'], defaults={'slot_choice': None})
-@app.route("/api/examtt/slot/<slot_choice>", methods=['GET'])
-def get_examtt_by_slot(slot_choice):
-    return controller.get_examtt_by_slot()
+@app.route("/api/examtt/slot", methods=['GET'])
+def get_examtt_by_slot():
+    day = request.args.get('day', default=None, type=str)
+    time = request.args.get('time', default=None, type=str)
+    venue = request.args.get('venue', default=None, type=str)
+    return json.jsonify(controller.get_examtt_by_slot(day, time, venue))
 
 
 @app.errorhandler(404)

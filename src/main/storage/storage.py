@@ -60,12 +60,34 @@ class Storage:
         return Venue.query.filter_by(name=venue.name).first_or_404().id
 
     def get_slot_id(self, slot):
-        print(slot.day, slot.time, slot.venue_id)
         self.add_slot(slot)
         return Slot.query.filter_by(
             day=slot.day,
             time=slot.time,
             venue_id=slot.venue_id).first_or_404().id
+
+    def get_examtt_by_slots_kwargs(self, day=None, time=None, venue=None):
+        kwargs = {"slot": {}, "venue": {}}
+        if day is not None:
+            kwargs['slot']['day'] = day
+        if time is not None:
+            kwargs['slot']['time'] = time
+        if venue is not None:
+            kwargs['venue']['name'] = venue
+            
+        return self.get_examtt_by_kwargs(
+            slot_args=kwargs['slot'], venue_args=kwargs['venue'])
+
+    def get_examtt_by_kwargs(
+            self,
+            student_args={}, module_args={},
+            slot_args={}, venue_args={}):
+        return self.db.session.query(Exams, Student, Module, Slot, Venue)\
+            .join(Student).filter_by(**student_args)\
+            .join(Module).filter_by(**module_args)\
+            .join(Slot).filter_by(**slot_args)\
+            .join(Venue).filter_by(**venue_args)\
+            .all()
 
     def commit(self):
         self.db.session.commit()

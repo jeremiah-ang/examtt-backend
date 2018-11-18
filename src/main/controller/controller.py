@@ -1,6 +1,7 @@
 from ..model.examtt import Examtt
-from ..model.parser.myacesParser import MyacesParser
-from ..model.parser.examttParser import ExamttParser
+from .parser.myacesParser import MyacesParser
+from .parser.examttParser import ExamttParser
+from .dataObject.examttSlotObject import ExamttSlotObject
 
 
 class Controller:
@@ -19,9 +20,12 @@ class Controller:
         if parser_choice == self.PARSER_CHOICE_MYACES:
             parser = MyacesParser()
         self.examtt.add(parser.parse(examtt_obj))
-    
-    def get_examtt_by_slot(slot_choice):
-        return "hello"
+
+    def get_examtt_by_slot(self, day, time, venue):
+        examttBySlot = ExamttSlotObject()
+        examttBySlot.add_entries(
+            self.examtt.get_by_slot(day, time, venue))
+        return examttBySlot.examtts
 
     def page_not_found(self):
         return "Page Not Found!"
