@@ -10,7 +10,7 @@ DATABASE_URI = {
     "filepath": "sqlite:///{}".format(dbfile)
 }
 app = Flask(__name__)
-CORS(app, resources={"/api/examtt": {"origins": "https://hopenus.github.io/examtt/"}})
+CORS(app, resources={"/api/examtt": {"origins": "https://hopenus.github.io"}})
 app.config[DATABASE_URI['key']] = DATABASE_URI['filepath']
 db = SQLAlchemy(app)
 
