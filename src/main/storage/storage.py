@@ -17,8 +17,7 @@ class Storage:
 
     def exists_module(self, module):
         return self.db.session.query(self.db.exists().where(
-            Module.code == module.code
-            and Module.slot_id == module.slot_id)).scalar()
+            Module.code == module.code)).scalar()
 
     def exists_venue(self, venue):
         return self.db.session.query(self.db.exists().where(
@@ -39,9 +38,12 @@ class Storage:
         if not self.exists_student(student):
             self.db.session.add(student)
 
-    def add_module(self, module):
-        if not self.exists_module(module):
+    def add_or_update_module(self, module):
+        existing_module = Module.query.get(module.code)
+        if existing_module is None:
             self.db.session.add(module)
+        else:
+            existing_module.slot_id = module.slot_id
 
     def add_venue(self, venue):
         if not self.exists_venue(venue):
@@ -74,7 +76,7 @@ class Storage:
             kwargs['slot']['time'] = time
         if venue is not None:
             kwargs['venue']['name'] = venue
-            
+
         return self.get_examtt_by_kwargs(
             slot_args=kwargs['slot'], venue_args=kwargs['venue'])
 
@@ -88,6 +90,21 @@ class Storage:
             .join(Slot).filter_by(**slot_args)\
             .join(Venue).filter_by(**venue_args)\
             .all()
+
+    def get_examtt_by_student(self, student):
+        return self.get_examtt_by_kwargs(student_args={"name": student})
+
+    def get_exams_list(self, student=None, module=None):
+        kwargs = {}
+        if student is not None: 
+            kwargs["student_name"] = student.name
+        if module is not None:
+            kwargs["module_code"] = module.code
+        return Exams.query.filter_by(**kwargs).all()
+
+    def delete_exams(self, student=None, module=None):
+        for exam in self.get_exams_list(student, module):
+            self.db.session.delete(exam)
 
     def commit(self):
         self.db.session.commit()
