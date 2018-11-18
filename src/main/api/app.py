@@ -22,7 +22,7 @@ controller = Controller(db)
 @app.after_request
 def after_request(response):
     response.headers.add(
-        'Access-Control-Allow-Origin', 'http://localhost:9876')
+        'Access-Control-Allow-Origin', 'https://hopenus.github.io')
     response.headers.add(
         'Access-Control-Allow-Headers', 'Content-Type,Authorization')
     response.headers.add(
