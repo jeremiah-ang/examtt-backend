@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, json
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 dbfile = os.path.join(project_dir, "..", "..", "database", "examtt.db")
@@ -9,6 +10,7 @@ DATABASE_URI = {
     "filepath": "sqlite:///{}".format(dbfile)
 }
 app = Flask(__name__)
+CORS(app)
 app.config[DATABASE_URI['key']] = DATABASE_URI['filepath']
 db = SQLAlchemy(app)
 
