@@ -19,6 +19,21 @@ from ..controller.controller import Controller
 controller = Controller(db)
 
 
+@app.after_request
+def after_request(response):
+    response.headers.add(
+        'Access-Control-Allow-Origin', 'http://localhost:9876')
+    response.headers.add(
+        'Access-Control-Allow-Origin', 'https://hopenus.github.io')
+    response.headers.add(
+        'Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add(
+        'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers.add(
+        'Access-Control-Allow-Credentials', 'true')
+    return response
+
+
 @app.route("/api/examtt", methods=['GET'])
 def home():
     return controller.help()
