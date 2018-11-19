@@ -1,5 +1,5 @@
 import re
-from ....exceptions.noStudentNameException import NoStudentNameException
+from ...exceptions.noStudentNameException import NoStudentNameException
 
 
 class Parser:
