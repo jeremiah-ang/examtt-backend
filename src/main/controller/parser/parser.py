@@ -1,4 +1,5 @@
 import re
+from ....exceptions.noStudentNameException import NoStudentNameException
 
 
 class Parser:
@@ -15,6 +16,8 @@ class Parser:
             self.examtt_regex, examtt_str, re.MULTILINE | re.VERBOSE)
         name_matches = re.search(
             self.name_regex, examtt_str, re.VERBOSE)
+        if name_matches is None:
+            raise NoStudentNameException
         return self.process_matches(examtt_matches, name_matches)
 
     def process_matches(self, examtt_matches, name_matches):

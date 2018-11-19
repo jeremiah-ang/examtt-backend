@@ -1,0 +1,2 @@
+class NoStudentNameException(Exception):
+    pass

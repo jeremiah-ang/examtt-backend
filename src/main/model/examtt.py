@@ -4,6 +4,7 @@ from .module import Module
 from .student import Student
 from .venue import Venue
 from .exams import Exams
+from ..exceptions.noStudentNameException import NoStudentNameException
 
 
 class Examtt:
@@ -12,6 +13,9 @@ class Examtt:
         self.storage = Storage(db)
 
     def add(self, parser_result):
+        if parser_result.student_name is None:
+            raise NoStudentNameException
+            
         student = Student(name=parser_result.student_name)
         self.storage.delete_exams(student=student)
         self.storage.add_student(student)
