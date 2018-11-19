@@ -68,6 +68,11 @@ def get_examtt_as_csv():
         headers={"Content-disposition": "attachment; filename=examtt.csv"})
 
 
+@app.route("/api/examtt/delete/student/<student_name>", methods=['GET'])
+def delete_examtt_by_student_name(student_name):
+    return controller.delete_examtt_by_student_name(student_name)
+
+
 @app.errorhandler(404)
 def page_not_found(err):
     return controller.page_not_found()

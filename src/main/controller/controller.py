@@ -36,6 +36,13 @@ class Controller:
             self.examtt.get_by_student(student_name))
         return examttByStudent.examtts
 
+    def delete_examtt_by_student_name(self, student_name):
+        try:
+            self.examtt.delete_by_student_name(student_name)
+            return "Successfully Deleted {}".format(student_name)
+        except Exception:
+            return "Failed to Delete with exception: {}".format(Exception)
+
     def get_examtt_as_csv(self):
         examttCsv = ExamttCsv()
         examttCsv.add_entries(self.examtt.get_by_slot(None, None, None))

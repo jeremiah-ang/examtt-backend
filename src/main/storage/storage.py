@@ -94,17 +94,17 @@ class Storage:
     def get_examtt_by_student(self, student):
         return self.get_examtt_by_kwargs(student_args={"name": student})
 
-    def get_exams_list(self, student=None, module=None):
+    def delete_examtt_by_student_name(self, student_name):
+        Student.query.filter_by(name=student_name).delete()
+        Exams.query.filter_by(student_name=student_name).delete()
+
+    def delete_exams(self, student=None, module=None):
         kwargs = {}
-        if student is not None: 
+        if student is not None:
             kwargs["student_name"] = student.name
         if module is not None:
             kwargs["module_code"] = module.code
-        return Exams.query.filter_by(**kwargs).all()
-
-    def delete_exams(self, student=None, module=None):
-        for exam in self.get_exams_list(student, module):
-            self.db.session.delete(exam)
+        return Exams.query.filter_by(**kwargs).delete()
 
     def commit(self):
         self.db.session.commit()

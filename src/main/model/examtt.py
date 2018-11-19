@@ -36,6 +36,10 @@ class Examtt:
 
     def get_slots(self, day, time, venue):
         return self.storage.get_examtt_by_slots_kwargs(day, time, venue)
-    
+
     def get_by_student(self, student):
         return self.storage.get_examtt_by_student(student)
+
+    def delete_by_student_name(self, student_name):
+        self.storage.delete_examtt_by_student_name(student_name)
+        self.storage.commit()
