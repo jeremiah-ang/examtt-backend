@@ -3,6 +3,7 @@ from ...exceptions.noStudentNameException import NoStudentNameException
 
 
 class Parser:
+
     def __init__(self, examtt_regex, name_regex):
         self.examtt_regex = examtt_regex
         self.name_regex = name_regex
