@@ -3,7 +3,7 @@ from .parserResult import ParserResult
 
 
 class MyacesParser(Parser):
-    name_regex = r"""Name:\s([A-Z\s-]+)\s\b"""
+    name_regex = r"""Name:\s([A-Za-z\s-,_]+)\s\b"""
     examtt_regex = r"""
         (([A-Z0-9]+)\s+Module\sCode:\s+\2\s+Venue:\s+([A-Z0-9-]+)\s+Date:
         \s+([0-9]{2}[A-Z]{3})\s+Time:\s+([0-9]{4})HR)"""
