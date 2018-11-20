@@ -16,7 +16,9 @@ class ExamttCsv(ExamttObject):
         venue = entry[self.INDEX_VENUE]
         module = entry[self.INDEX_MODULE]
         student = entry[self.INDEX_STUDENT]
-        self.csvs.append((day, time, venue.name, module.code, student.name))
+        self.csvs.append(
+            (day, time, venue.name, module.code,
+                student.name, student.lifegroup))
 
     def format_day(self, day):
         day = day[2:] + day[:2]
@@ -35,7 +37,7 @@ class ExamttCsv(ExamttObject):
             self.unformat_day(day), time, venue, module, student, lifegroup)
 
     def get_csv(self):
-        csv = ""
+        csv = "date, time, venue, module, name, lifegroup\n"
         self.csvs.sort()
         for row in self.csvs:
             csv = csv + self.make_row(*row)
