@@ -76,6 +76,11 @@ def delete_examtt_by_student_name(student_name):
     return controller.delete_examtt_by_student_name(student_name)
 
 
+@app.route("/api/examtt/lgs", methods=['GET'])
+def get_all_lg():
+    return json.jsonify(controller.get_all_lg())
+
+
 @app.errorhandler(404)
 def page_not_found(err):
     return controller.page_not_found()

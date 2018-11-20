@@ -113,5 +113,8 @@ class Storage:
             kwargs["module_code"] = module.code
         return Exams.query.filter_by(**kwargs).delete()
 
+    def get_all_lg(self):
+        return Lifegroup.query.all()
+
     def commit(self):
         self.db.session.commit()
