@@ -7,6 +7,7 @@ class ExamttObject(DataObject):
     KEY_MODULE = "modules"
     KEY_SLOT = "slots"
     KEY_VENUE = "venues"
+    KEY_LIFEGROUP = "lifegroup"
 
     INDEX_EXAMS = 0
     INDEX_STUDENT = 1

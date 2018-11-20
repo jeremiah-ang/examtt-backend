@@ -3,6 +3,7 @@ from ..model.module import Module
 from ..model.slot import Slot
 from ..model.student import Student
 from ..model.venue import Venue
+from ..model.lifegroup import Lifegroup
 from sqlalchemy import and_
 
 
@@ -35,8 +36,11 @@ class Storage:
             Exams.module_code == exams.module_code))).scalar()
 
     def add_student(self, student):
-        if not self.exists_student(student):
+        existing_student = Student.query.get(student.name)
+        if existing_student is None:
             self.db.session.add(student)
+        else:
+            existing_student.lifegroup = student.lifegroup
 
     def add_or_update_module(self, module):
         existing_module = Module.query.get(module.code)
@@ -67,6 +71,9 @@ class Storage:
             day=slot.day,
             time=slot.time,
             venue_id=slot.venue_id).first_or_404().id
+
+    def get_lifegroup(self, lifegroup_name):
+        return Lifegroup.query.get(lifegroup_name)
 
     def get_examtt_by_slots_kwargs(self, day=None, time=None, venue=None):
         kwargs = {"slot": {}, "venue": {}}

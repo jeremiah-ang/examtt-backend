@@ -30,9 +30,9 @@ class ExamttCsv(ExamttObject):
         month = "DEC" if month == "12" else "NOV"
         return date + month
 
-    def make_row(self, day, time, venue, module, student):
-        return "{}, {}, {}, {}, {}\n".format(
-            self.unformat_day(day), time, venue, module, student)
+    def make_row(self, day, time, venue, module, student, lifegroup):
+        return "{}, {}, {}, {}, {}, {}\n".format(
+            self.unformat_day(day), time, venue, module, student, lifegroup)
 
     def get_csv(self):
         csv = ""

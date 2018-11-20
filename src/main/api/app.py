@@ -41,9 +41,12 @@ def home():
     "/api/examtt/parse", methods=['POST'], defaults={'parser_choice': None})
 @app.route("/api/examtt/parse/<parser_choice>", methods=['POST'])
 def parse_examtt(parser_choice):
-    examtt_str = request.get_json()['examtt']
+    jsonObj = request.get_json()
+    examtt_str = jsonObj['examtt']
+    lifegroup = jsonObj['lifegroup']
     return json.jsonify(
-        controller.parse_and_add_examtt_obj(examtt_str, parser_choice))
+        controller.parse_and_add_examtt_obj(
+            examtt_str, lifegroup, parser_choice))
 
 
 @app.route("/api/examtt/slot", methods=['GET'])
