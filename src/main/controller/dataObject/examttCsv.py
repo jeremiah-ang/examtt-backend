@@ -33,7 +33,7 @@ class ExamttCsv(ExamttObject):
         return date + month
 
     def make_row(self, day, time, venue, module, student, lifegroup):
-        return "{}, {}, {}, {}, {}, {}\n".format(
+        return '{}, {}, {}, {}, "{}", {}\n'.format(
             self.unformat_day(day), time, venue, module, student, lifegroup)
 
     def get_csv(self):
