@@ -42,4 +42,6 @@ class ExamttSlotObject(ExamttObject):
     def add_module_to_obj(self, obj, module, student):
         if module.code not in obj:
             obj[module.code] = []
-        obj[module.code].append(student.name)
+        obj[module.code].append({
+            "name": student.name,
+            self.KEY_LIFEGROUP: student.lifegroup})

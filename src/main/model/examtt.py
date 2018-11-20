@@ -5,6 +5,7 @@ from .student import Student
 from .venue import Venue
 from .exams import Exams
 from ..exceptions.noStudentNameException import NoStudentNameException
+from ..exceptions.invalidLifegroupException import InvalidLifegroupException
 
 
 class Examtt:
@@ -12,11 +13,15 @@ class Examtt:
     def __init__(self, db):
         self.storage = Storage(db)
 
-    def add(self, parser_result):
+    def add(self, parser_result, lifegroup_str):
         if parser_result.student_name is None:
             raise NoStudentNameException
-            
-        student = Student(name=parser_result.student_name)
+
+        lifegroup = self.storage.get_lifegroup(lifegroup_str)
+        if lifegroup is None:
+            raise InvalidLifegroupException
+        student = Student(
+            name=parser_result.student_name, lifegroup=lifegroup.name)
         self.storage.delete_exams(student=student)
         self.storage.add_student(student)
         for entry in parser_result.entries:

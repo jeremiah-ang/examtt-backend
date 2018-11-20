@@ -17,11 +17,11 @@ class Controller:
     def help(self):
         return "Help Document"
 
-    def parse_and_add_examtt_obj(self, examtt_obj, parser_choice):
+    def parse_and_add_examtt_obj(self, examtt_obj, lifegroup, parser_choice):
         parser = ExamttParser()
         if parser_choice == self.PARSER_CHOICE_MYACES:
             parser = MyacesParser()
-        student_name = self.examtt.add(parser.parse(examtt_obj))
+        student_name = self.examtt.add(parser.parse(examtt_obj), lifegroup)
         return self.get_examtt_by_student(student_name)
 
     def get_examtt_by_slot(self, day, time, venue):

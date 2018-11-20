@@ -14,7 +14,7 @@ class ExamttStudentObject(ExamttObject):
     def add_student(self, student):
         if student.name not in self.examtts[self.KEY_STUDENT]:
             self.examtts[self.KEY_STUDENT][student.name] = \
-                {self.KEY_MODULE: []}
+                {self.KEY_LIFEGROUP: student.lifegroup, self.KEY_MODULE: []}
 
     def add_module(self, student_obj, module, slot, venue):
         student_obj[self.KEY_MODULE].append({
