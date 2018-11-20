@@ -4,6 +4,7 @@ from .parser.examttParser import ExamttParser
 from .dataObject.examttSlotObject import ExamttSlotObject
 from .dataObject.examttStudentObject import ExamttStudentObject
 from .dataObject.examttCsv import ExamttCsv
+from .dataObject.lgListObject import LgListObject
 
 
 class Controller:
@@ -47,6 +48,11 @@ class Controller:
         examttCsv = ExamttCsv()
         examttCsv.add_entries(self.examtt.get_by_slot(None, None, None))
         return examttCsv.get_csv()
+
+    def get_all_lg(self):
+        lgListObject = LgListObject()
+        lgListObject.add_lgs(self.examtt.get_all_lg())
+        return lgListObject.lgs
 
     def page_not_found(self):
         return "Page Not Found!"
