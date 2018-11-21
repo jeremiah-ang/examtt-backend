@@ -48,6 +48,9 @@ class Examtt:
     def get_all_lg(self):
         return self.storage.get_all_lg()
 
+    def get_lg_count(self):
+        return self.storage.get_lg_count()
+
     def delete_by_student_name(self, student_name):
         self.storage.delete_examtt_by_student_name(student_name)
         self.storage.commit()

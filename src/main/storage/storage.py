@@ -4,7 +4,7 @@ from ..model.slot import Slot
 from ..model.student import Student
 from ..model.venue import Venue
 from ..model.lifegroup import Lifegroup
-from sqlalchemy import and_
+from sqlalchemy import and_, func
 
 
 class Storage:
@@ -115,6 +115,11 @@ class Storage:
 
     def get_all_lg(self):
         return Lifegroup.query.all()
+
+    def get_lg_count(self):
+        return self.db.session.query(
+            Student.lifegroup, func.count(Student.lifegroup))\
+            .group_by(Student.lifegroup).all()
 
     def commit(self):
         self.db.session.commit()
