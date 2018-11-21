@@ -1,4 +1,5 @@
 from .examttObject import ExamttObject
+import operator
 
 
 class ExamttCsv(ExamttObject):
@@ -38,7 +39,7 @@ class ExamttCsv(ExamttObject):
 
     def get_csv(self):
         csv = "date, time, venue, module, name, lifegroup\n"
-        self.csvs.sort()
+        self.csvs.sort(key=operator.itemgetter(1, 2, 3))
         for row in self.csvs:
             csv = csv + self.make_row(*row)
         return csv
