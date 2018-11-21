@@ -81,6 +81,11 @@ def get_all_lg():
     return json.jsonify(controller.get_all_lg())
 
 
+@app.route("/api/examtt/lg-stats", methods=['GET'])
+def get_lg_count():
+    return json.jsonify(controller.get_lg_count())
+
+
 @app.errorhandler(404)
 def page_not_found(err):
     return controller.page_not_found()

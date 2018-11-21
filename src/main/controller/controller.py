@@ -5,6 +5,7 @@ from .dataObject.examttSlotObject import ExamttSlotObject
 from .dataObject.examttStudentObject import ExamttStudentObject
 from .dataObject.examttCsv import ExamttCsv
 from .dataObject.lgListObject import LgListObject
+from .dataObject.lgCountObject import LgCountObject
 
 
 class Controller:
@@ -53,6 +54,12 @@ class Controller:
         lgListObject = LgListObject()
         lgListObject.add_lgs(self.examtt.get_all_lg())
         return lgListObject.lgs
+
+    def get_lg_count(self):
+        lgCount = self.examtt.get_lg_count()
+        lgCountObject = LgCountObject()
+        lgCountObject.add_entries(lgCount)
+        return lgCountObject.obj
 
     def page_not_found(self):
         return "Page Not Found!"
