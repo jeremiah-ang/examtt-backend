@@ -1,0 +1,44 @@
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2018 13:17:19] "GET /api/examtt/lgs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2018 13:17:22] "GET /api/examtt/csv HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2018 13:17:26] "GET /api/examtt/lg-stats HTTP/1.1" 200 -
+DEBUG:root:Parsing Examtt String: NUS Exam Timetable
+
+Matric No.: A0155950B
+Name: JEREMIAH ANG YONG EN   
+	
+
+
+CS2103
+Module Code:	CS2103
+Venue:	MPSH6
+Date:	05DEC
+Time:	1700HR
+Seat No:	37
+CS4226
+Module Code:	CS4226
+Venue:	COM1-0206
+Date:	01DEC
+Time:	0900HR
+Seat No:	71
+CS4234
+Module Code:	CS4234
+Venue:	COM1_0206
+Date:	27NOV
+Time:	1700HR
+Seat No:	9
+GES1003
+Module Code:	GES1003
+Venue:	MPSH1-B
+Date:	26NOV
+Time:	1700HR
+Seat No:	225
+LSM1301
+Module Code:	LSM1301
+Venue:	UT-AUD2
+Date:	26NOV
+Time:	1300HR
+Seat No:	78
+
+Registrar's Office Exam Directory
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2018 13:17:31] "POST /api/examtt/parse/myaces HTTP/1.1" 200 -
