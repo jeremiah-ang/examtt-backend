@@ -1,7 +1,0 @@
-from src.main.api.app import db
-from src.main.model.venue import Venue
-from src.main.model.slot import Slot
-from src.main.model.student import Student
-from src.main.model.module import Module
-from src.main.model.exams import Exams
-db.create_all()
