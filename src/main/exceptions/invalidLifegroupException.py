@@ -1,2 +1,0 @@
-class InvalidLifegroupException(Exception):
-    pass

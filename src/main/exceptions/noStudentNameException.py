@@ -1,2 +1,0 @@
-class NoStudentNameException(Exception):
-    pass
